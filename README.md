@@ -138,3 +138,74 @@
 
 </body>
 </html>
+// LOGIN SYSTEM
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("loginForm");
+
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username === "admin" && password === "1234") {
+                localStorage.setItem("loggedIn", "true");
+                window.location.href = "dashboard.html";
+            } else {
+                document.getElementById("error").innerText = "Invalid Login Details!";
+            }
+        });
+    }
+
+    // Protect dashboard
+    if (window.location.pathname.includes("dashboard.html")) {
+        if (localStorage.getItem("loggedIn") !== "true") {
+            window.location.href = "index.html";
+        }
+    }
+
+});
+
+
+// AI FERTILIZER LOGIC
+function recommendFertilizer() {
+
+    let n = parseInt(document.getElementById("nitrogen").value);
+    let p = parseInt(document.getElementById("phosphorus").value);
+    let k = parseInt(document.getElementById("potassium").value);
+    let ph = parseFloat(document.getElementById("ph").value);
+    let crop = document.getElementById("crop").value;
+
+    let recommendation = "";
+
+    if (n < 50) {
+        recommendation = "Urea (Nitrogen Deficiency)";
+    }
+    else if (p < 30) {
+        recommendation = "DAP (Phosphorus Deficiency)";
+    }
+    else if (k < 40) {
+        recommendation = "MOP (Potassium Deficiency)";
+    }
+    else if (ph < 6) {
+        recommendation = "Apply Lime (Low pH Soil)";
+    }
+    else if (ph > 7.5) {
+        recommendation = "Apply Gypsum (High pH Soil)";
+    }
+    else {
+        recommendation = "NPK 20-20-20 (Balanced Fertilizer)";
+    }
+
+    document.getElementById("result").innerHTML =
+        "Recommended Fertilizer for " + crop + " : " + recommendation;
+}
+
+
+// LOGOUT
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+}
