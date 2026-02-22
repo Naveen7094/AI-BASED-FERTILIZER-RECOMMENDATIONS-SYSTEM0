@@ -61,3 +61,80 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fertilizer Recommendation</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+            background: #f1f8e9;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: 60px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkgreen;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Enter Soil Details</h2>
+
+    <input type="number" id="nitrogen" placeholder="Nitrogen (N)" required>
+    <input type="number" id="phosphorus" placeholder="Phosphorus (P)" required>
+    <input type="number" id="potassium" placeholder="Potassium (K)" required>
+    <input type="number" step="0.1" id="ph" placeholder="Soil pH" required>
+
+    <select id="crop">
+        <option value="">Select Crop</option>
+        <option value="Rice">Rice</option>
+        <option value="Wheat">Wheat</option>
+        <option value="Maize">Maize</option>
+        <option value="Cotton">Cotton</option>
+        <option value="Sugarcane">Sugarcane</option>
+    </select>
+
+    <button onclick="recommendFertilizer()">Get Recommendation</button>
+
+    <div id="result"></div>
+
+    <br><br>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
